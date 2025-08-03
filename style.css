@@ -1,135 +1,128 @@
-/* Main Container */
+/* Main container styling */
 #cyber-dashboard {
-    background-color: #1e1e2f;
-    color: #f0f0f0;
-    font-family: 'Courier New', Courier, monospace;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    position: relative;
-    overflow: hidden;
+  background-color: #121212;
+  color: #e0e0e0;
+  font-family: 'Courier New', Courier, monospace;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Data Packet Animation */
+/* Data packets animation */
 @keyframes data-packet {
-    0% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-    50% {
-        transform: translateY(-20px) scale(1.1);
-        opacity: 0.8;
-    }
-    100% {
-        transform: translateY(0);
-        opacity: 0;
-    }
+  0% {
+    transform: translateY(100vh) translateX(-50%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(-50vh) translateX(50%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(0);
+    opacity: 0;
+  }
 }
 
-.data-packet {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background: linear-gradient(45deg, #ff0080, #00ff8f);
-    border-radius: 50%;
-    animation: data-packet 2s infinite ease-in-out;
+.packet {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(135deg, #00ff99, #00ccff);
+  border-radius: 50%;
+  animation: data-packet 5s linear infinite;
+  will-change: transform, opacity;
 }
 
-/* Pulsating Activity Indicator */
+/* Pulsating activity indicator */
 .activity-indicator {
-    width: 20px;
-    height: 20px;
-    background-color: #ff4545;
-    border-radius: 50%;
-    animation: pulse 1.5s infinite ease-in-out;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #ff4081;
+  animation: pulse 1.5s infinite;
 }
 
 @keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-        opacity: 0.8;
-    }
-    50% {
-        transform: scale(1.5);
-        opacity: 0.4;
-    }
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 1;
+  }
 }
 
-/* Typing Effect */
-.typing-effect {
-    display: inline-block;
-    border-right: 2px solid #00ffcc;
-    animation: typing 3s steps(30, end), blink-caret 0.75s step-end infinite;
+/* Typing effect in a terminal */
+.terminal-text {
+  font-size: 1.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid #00ff99;
+  animation: typing 4s steps(30, end), blink-caret 0.75s step-end infinite;
 }
 
 @keyframes typing {
-    from {
-        width: 0;
-    }
-    to {
-        width: 100%;
-    }
+  from { width: 0; }
+  to { width: 100%; }
 }
 
 @keyframes blink-caret {
-    50% {
-        border-color: transparent;
-    }
+  from, to { border-color: transparent; }
+  50% { border-color: #00ff99; }
 }
 
-/* Abstract Network Visualization */
-.network-container {
-    position: relative;
-    width: 100%;
-    height: 300px;
-    overflow: hidden;
+/* Abstract network visualization */
+.network {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 
 .node {
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    background-color: #00bfff;
-    border-radius: 50%;
-    animation: move-node 5s infinite alternate;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #00ccff;
+  animation: float 3s ease-in-out infinite;
 }
 
-@keyframes move-node {
-    0% {
-        transform: translate(0, 0);
-    }
-    50% {
-        transform: translate(calc(100vw * var(--x)), calc(100vh * var(--y)));
-    }
-    100% {
-        transform: translate(0, 0);
-    }
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 .line {
-    position: absolute;
-    height: 2px;
-    background-color: rgba(0, 255, 255, 0.5);
-    animation: draw-line 4s infinite ease-in-out;
+  position: absolute;
+  width: 2px;
+  background-color: #00ff99;
+  transform-origin: 0 0;
+  animation: draw-line 6s ease-in-out infinite;
 }
 
 @keyframes draw-line {
-    from {
-        width: 0;
-    }
-    to {
-        width: 100%;
-    }
-}
-
-/* Adding nodes and lines dynamically */
-.node {
-    --x: random(0, 1);
-    --y: random(0, 1);
-}
-
-.line {
-    transform-origin: left;
+  0% {
+    height: 0;
+    transform: scaleY(0);
+  }
+  50% {
+    height: 100px;
+    transform: scaleY(1);
+  }
+  100% {
+    height: 0;
+    transform: scaleY(0);
+  }
 }
 ```
-This CSS provides a comprehensive styling approach for your OSINT web project, incorporating a modern dark theme and intricate animations that reflect cybersecurity concepts. Adjustments can be made for specific features or additional elements as required.
