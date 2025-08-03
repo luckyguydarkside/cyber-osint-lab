@@ -1,70 +1,65 @@
-/* General styles for the dashboard container */
-body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #121212;
-    color: #e0e0e0;
-}
-
-.dashboard-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+/* Main Container */
+#cyber-dashboard {
+    background-color: #1e1e2f;
+    color: #f0f0f0;
+    font-family: 'Courier New', Courier, monospace;
     padding: 20px;
-    height: 100vh;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    position: relative;
     overflow: hidden;
 }
 
-/* Header styles */
-.header {
-    width: 100%;
-    background: linear-gradient(90deg, #1f1f1f, #282828);
-    padding: 10px 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+/* Data Packet Animation */
+@keyframes data-packet {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-20px) scale(1.1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 0;
+    }
 }
 
-/* Card styles for displaying OSINT data */
-.card {
-    background-color: #1e1e1e;
-    border-radius: 8px;
-    padding: 15px;
-    margin: 10px 0;
-    width: 100%;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+.data-packet {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: linear-gradient(45deg, #ff0080, #00ff8f);
+    border-radius: 50%;
+    animation: data-packet 2s infinite ease-in-out;
 }
 
-/* Pulsating activity indicator */
+/* Pulsating Activity Indicator */
 .activity-indicator {
     width: 20px;
     height: 20px;
-    background-color: #76ff03;
+    background-color: #ff4545;
     border-radius: 50%;
-    animation: pulse 1.5s infinite;
+    animation: pulse 1.5s infinite ease-in-out;
 }
 
 @keyframes pulse {
     0%, 100% {
         transform: scale(1);
-        opacity: 0.7;
+        opacity: 0.8;
     }
     50% {
         transform: scale(1.5);
-        opacity: 1;
+        opacity: 0.4;
     }
 }
 
-/* Typing effect for terminal output */
-.terminal-output {
-    font-family: monospace;
-    color: #00ffcc;
-    white-space: nowrap;
-    overflow: hidden;
-    border-right: 2px solid #00ffcc; /* Cursor effect */
-    animation: typing 4s steps(30, end), blink 0.75s step-end infinite;
+/* Typing Effect */
+.typing-effect {
+    display: inline-block;
+    border-right: 2px solid #00ffcc;
+    animation: typing 3s steps(30, end), blink-caret 0.75s step-end infinite;
 }
 
 @keyframes typing {
@@ -76,68 +71,65 @@ body {
     }
 }
 
-@keyframes blink {
-    0%, 100% {
-        border-color: transparent;
-    }
+@keyframes blink-caret {
     50% {
-        border-color: #00ffcc;
+        border-color: transparent;
     }
 }
 
-/* Network visualization */
-.network {
+/* Abstract Network Visualization */
+.network-container {
     position: relative;
     width: 100%;
     height: 300px;
-    background: radial-gradient(circle, rgba(34, 34, 34, 1) 0%, rgba(18, 18, 18, 1) 100%);
     overflow: hidden;
 }
 
 .node {
     position: absolute;
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
+    background-color: #00bfff;
     border-radius: 50%;
-    background-color: #ff4081;
-    animation: moveNode 10s linear infinite;
+    animation: move-node 5s infinite alternate;
 }
 
-@keyframes moveNode {
+@keyframes move-node {
     0% {
         transform: translate(0, 0);
     }
-    25% {
-        transform: translate(100%, 50%);
-    }
     50% {
-        transform: translate(50%, 100%);
-    }
-    75% {
-        transform: translate(0, 50%);
+        transform: translate(calc(100vw * var(--x)), calc(100vh * var(--y)));
     }
     100% {
         transform: translate(0, 0);
     }
 }
 
-/* Additional node animations for variety */
-.node:nth-child(1) {
-    animation-delay: 0s;
+.line {
+    position: absolute;
+    height: 2px;
+    background-color: rgba(0, 255, 255, 0.5);
+    animation: draw-line 4s infinite ease-in-out;
 }
 
-.node:nth-child(2) {
-    animation-delay: 2s;
+@keyframes draw-line {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
 }
 
-.node:nth-child(3) {
-    animation-delay: 4s;
+/* Adding nodes and lines dynamically */
+.node {
+    --x: random(0, 1);
+    --y: random(0, 1);
 }
 
-.node:nth-child(4) {
-    animation-delay: 6s;
+.line {
+    transform-origin: left;
 }
-
-.node:nth-child(5) {
-    animation-delay: 8s;
-}
+```
+This CSS provides a comprehensive styling approach for your OSINT web project, incorporating a modern dark theme and intricate animations that reflect cybersecurity concepts. Adjustments can be made for specific features or additional elements as required.
