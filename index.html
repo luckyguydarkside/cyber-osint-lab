@@ -3,49 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OSINT Cybersecurity Dashboard</title>
+    <title>OSINT Cyber Dashboard</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
 <body>
     <div id="cyber-dashboard">
         <header>
-            <h1>OSINT Cybersecurity Dashboard</h1>
+            <h1>OSINT Cyber Dashboard</h1>
+            <p>Explore the world of Open Source Intelligence</p>
         </header>
-
-        <section id="terminal">
+        
+        <section class="simulated-terminal">
             <h2>Simulated Terminal</h2>
             <div class="terminal-output">
-                <p>$ nmap -sP 192.168.1.0/24</p>
-                <p>Starting Nmap 7.80 ( https://nmap.org ) at 2023-10-01 12:00 UTC</p>
-                <p>Scanning 192.168.1.0/24 [256 ports]</p>
-                <p>Completed Nmap scan at 12:01 UTC</p>
-                <p>Nmap scan report for 192.168.1.1</p>
-                <p>Host is up (0.0050s latency).</p>
+                <pre>
+$ osint-tool --scan target.com
+Scanning target.com...
+[+] Found IP: 192.168.1.1
+[+] Open Ports: 22, 80, 443
+[+] DNS Records: target.com A 192.168.1.1
+                </pre>
             </div>
         </section>
 
-        <section id="data-visualization">
+        <section class="data-visualization">
             <h2>Dynamic Data Visualizations</h2>
-            <div class="chart">
-                <div class="bar" style="height: 80%; background-color: #4caf50;"></div>
-                <div class="bar" style="height: 40%; background-color: #2196F3;"></div>
-                <div class="bar" style="height: 60%; background-color: #FFC107;"></div>
+            <div class="chart" id="network-chart">
+                <div class="bar" style="height: 70%;"></div>
+                <div class="bar" style="height: 50%;"></div>
+                <div class="bar" style="height: 30%;"></div>
+                <div class="bar" style="height: 90%;"></div>
             </div>
         </section>
 
-        <section id="network-map">
+        <section class="network-map">
             <h2>Network Map</h2>
-            <div class="network-node" style="top: 30%; left: 40%;"></div>
-            <div class="network-node" style="top: 50%; left: 60%;"></div>
-            <div class="network-node" style="top: 70%; left: 20%;"></div>
+            <div class="map">
+                <div class="node" style="top: 20%; left: 30%;"></div>
+                <div class="node" style="top: 50%; left: 50%;"></div>
+                <div class="node" style="top: 70%; left: 20%;"></div>
+                <div class="connection" style="top: 20%; left: 30%; height: 30px; width: 2px; transform: rotate(45deg);"></div>
+                <div class="connection" style="top: 50%; left: 50%; height: 30px; width: 2px; transform: rotate(-45deg);"></div>
+            </div>
         </section>
 
-        <section id="encryption">
+        <section class="encryption-decryption">
             <h2>Encryption/Decryption Effects</h2>
             <div class="encryption-effect">
-                <p>Original: <span class="text">Hello, OSINT!</span></p>
-                <p>Encrypted: <span class="text-encrypted">***** *****!</span></p>
+                <p>Encrypting...</p>
+                <div class="cipher-text">U2FsdGVkX19M2nJpZ2l0c3M4MTIz</div>
             </div>
         </section>
     </div>
